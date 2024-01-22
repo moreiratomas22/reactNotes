@@ -1,16 +1,50 @@
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Note from './Note/Note';
 
-function App() {
-  return (
-    <div className="notesContainer">
+class App extends Component {
 
-      <div className="notesHeader">
-      <h1>React y Firebase App</h1>
+  constructor() {
+    super();
+    this.state = {
+      notes: [
+        { noteId: 1, noteContent: 'note 1' },
+        { noteId: 2, noteContent: 'note 2' }
+      ]
+    };
+  }
+
+  render() {
+
+    return (
+      <div className="notesContainer">
+
+        <div className="notesHeader">
+          <h1>React y Firebase App</h1>
+        </div>
+
+        <div className="notesBody">
+          <ul>
+            {
+              this.state.notes.map(note => (
+                <Note 
+                noteContent={note.noteContent}
+                noteId={note.noteId}
+                key={note.noteId}
+                />
+              ))
+            }
+          </ul>
+        </div>
+
+        <div className="notesFooter">
+
+        </div>
+
       </div>
-      
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
+

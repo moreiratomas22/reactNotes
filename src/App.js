@@ -30,8 +30,9 @@ class App extends Component {
     const { notes } = this.state;
     const notesRef = ref(this.db, 'notes');
 
+    let updatedNotes = [...notes]
     onChildAdded(notesRef, snap => {
-      notes.push({
+      updatedNotes.push({
         noteId: snap.key,
         noteContent: snap.val().noteContent
       })
@@ -39,7 +40,7 @@ class App extends Component {
     })
 
     onChildRemoved(notesRef, snap => {
-      const updatedNotes = notes.filter(note => note.noteId !== snap.key);
+      updatedNotes = notes.filter(note => note.noteId !== snap.key);
       this.setState({ notes: updatedNotes });
     });
 

@@ -30,7 +30,7 @@ class App extends Component {
     const { notes } = this.state;
     const notesRef = ref(this.db, 'notes');
 
-    let updatedNotes = [...notes]
+    let updatedNotes = notes
     onChildAdded(notesRef, snap => {
       updatedNotes.push({
         noteId: snap.key,
